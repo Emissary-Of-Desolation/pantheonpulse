@@ -24,60 +24,50 @@ class ProtocolPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 165, 77, 71),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: const Color.fromARGB(255, 165, 77, 71),
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              alignment: Alignment.center,
-              child: Text(
-                'Beginner Protocol $protocolNumber',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+      backgroundColor: Colors.white, // Changed background color to white
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 165, 77, 71), // Custom app bar color
+        title: Text(
+          'Beginner Protocol $protocolNumber',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        elevation: 0, // Removed app bar elevation
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 16.0, // Increased spacing
+            mainAxisSpacing: 16.0, // Increased spacing
+          ),
+          itemCount: endDay - startDay + 1,
+          itemBuilder: (context, index) {
+            final day = startDay + index;
+            return GestureDetector(
+              onTap: () => _navigateToWorkout(context, protocolNumber, day),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  color: const Color.fromARGB(255, 165, 77, 71), // Custom card color
                 ),
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0,
-                ),
-                itemCount: endDay - startDay + 1,
-                itemBuilder: (context, index) {
-                  final day = startDay + index;
-                  return GestureDetector(
-                    onTap: () =>
-                        _navigateToWorkout(context, protocolNumber, day),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white12, width: 2.0),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Card(
-                        color: const Color.fromARGB(211, 189, 90, 83),
-                        child: Center(
-                          child: Text(
-                            'Day $day',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
+                child: Center(
+                  child: Text(
+                    'Day $day',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

@@ -23,12 +23,12 @@ class WorkoutPage extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color.fromARGB(179, 221, 110, 110),
+          backgroundColor: const Color.fromARGB(255, 165, 77, 71), // Use a more appealing color
           title: const Text(
             'Workout Instruction',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 28,
+              fontSize: 24, // Slightly smaller font
               color: Colors.white,
             ),
           ),
@@ -36,7 +36,9 @@ class WorkoutPage extends StatelessWidget {
             'Elliptical Cross: 10 minutes\n\nWorkouts: 5 Sets x 10 Reps\n\nCycling: 10 minutes',
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight:
+                  FontWeight.normal, // Use normal font weight for content
+              fontSize: 18, // Smaller font size
             ),
           ),
           actions: [
@@ -49,7 +51,7 @@ class WorkoutPage extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18, // Slightly smaller font size
                 ),
               ),
             ),
@@ -64,35 +66,32 @@ class WorkoutPage extends StatelessWidget {
     final List<String> images = getWorkoutImages(day);
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 165, 77, 71),
+      backgroundColor:  Colors.white, // Use a more appealing color
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             padding: const EdgeInsets.all(16.0),
-            color: const Color.fromARGB(255, 165, 77, 71),
+            color: const Color.fromARGB(255, 165, 77, 71), // Use the same background color
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const SizedBox(width: 30),
                 Text(
-                  'Protocol $protocolNumber - Day $day Workouts',
+                  '\nProtocol $protocolNumber - Day $day',
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 24, // Slightly larger font size
                     fontWeight: FontWeight.bold,
-                    height: 3,
                     color: Colors.white,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: IconButton(
-                    onPressed: () {
-                      _showInfoMessage(context);
-                    },
-                    icon: const Icon(Icons.info),
-                    iconSize: 30,
-                    color: Colors.white,
-                  ),
+                IconButton(
+                  onPressed: () {
+                    _showInfoMessage(context);
+                  },
+                  icon: const Icon(Icons.info),
+                  iconSize: 28, // Slightly smaller icon size
+                  color: Colors.white,
                 ),
               ],
             ),
@@ -102,7 +101,15 @@ class WorkoutPage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: images.length,
               itemBuilder: (context, index) {
-                return Image.asset(images[index]);
+                return Padding(
+                  padding: const EdgeInsets.all(
+                      8.0), // Add some padding around images
+                  child: ClipRRect(
+                    borderRadius:
+                        BorderRadius.circular(12), // Rounded corners for images
+                    child: Image.asset(images[index]),
+                  ),
+                );
               },
             ),
           ),

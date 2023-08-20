@@ -15,13 +15,13 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               const Text(
-                'Welcome,',
+                'Welcome to\nPantheon Pulse',
                 style: TextStyle(
                   color: Color.fromARGB(179, 255, 219, 219),
                   fontFamily: 'Bangers Regular',
-                  fontSize: 63,
+                  fontSize: 50,
                   fontWeight: FontWeight.bold,
                   height: 1,
                   letterSpacing: 7,
